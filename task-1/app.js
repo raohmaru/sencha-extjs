@@ -62,7 +62,7 @@ Ext.application({
                     // widget instance may already serve a DIFFERENT record.
                     onWidgetAttach : function (col, widget, rec) {
                         Ext.defer(function () {
-                            widget.setText(rec.get('active') ? 'Deactivate' : 'Activate');
+                            widget.setWidgetLabel(rec);
                             widget.setDisabled(!!rec.get('locked'));
                         }, 30);
 
@@ -72,11 +72,16 @@ Ext.application({
                     widget : {
                         xtype   : 'button',
                         handler : function () {
-                            var col = this.getWidgetColumn(),
-                                rec = col._lastRecord;
+							// https://docs.sencha.com/extjs/7.5.0/classic/Ext.grid.column.Widget.html#method-getWidgetRecord
+                            const rec = this.getWidgetRecord();
 
                             rec.set('active', !rec.get('active'));
-                        }
+							this.setWidgetLabel(rec);
+                        },
+
+						setWidgetLabel(rec) {
+							this.setText(rec.get('active') ? 'Deactivate' : 'Activate');
+						}
                     }
                 }
             ]
