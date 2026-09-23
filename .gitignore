@@ -1,0 +1,4 @@
+.DS_Store
+build
+generatedFiles
+node_modules

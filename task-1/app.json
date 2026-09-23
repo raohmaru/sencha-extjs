@@ -1,0 +1,111 @@
+{
+  "name": "Task 1",
+  "namespace": "Task 1",
+  "version": "1.0.0.0",
+  "framework": "ext",
+  "template": "classicdesktop",
+  "indexHtmlPath": "index.html",
+  "builds": {
+    "desktop": {
+      "toolkit": "classic",
+      "theme": "theme-triton"
+    }
+  },
+  "output": {
+    "base": "${workspace.build.dir}/${build.environment}/${app.name}",
+    "page": "index.html",
+    "manifest": "generatedFiles/${build.id}.json",
+    "js": "generatedFiles/${build.id}/app.js",
+    "appCache": {
+      "enable": false
+    },
+    "resources": {
+      "path": "${build.id}/resources",
+      "shared": "resources"
+    }
+  },
+  "classic": {
+    "js": []
+  },
+  "loader": {
+    "cache": false,
+    "cacheParam": "_dc"
+  },
+  "production": {
+    "js": [
+      {
+        "path": "app.js",
+        "bundle": true
+      },
+      {
+        "path": "${app.webpack.bundle}",
+        "compress": false
+      }
+    ],
+    "output": {
+      "appCache": {
+        "enable": false,
+        "path": "cache.appcache"
+      }
+    },
+    "loader": {
+      "cache": "${build.timestamp}"
+    },
+    "cache": {
+      "enable": true
+    },
+    "compressor": {
+      "type": "yui"
+    }
+  },
+  "testing": {
+    "js": [
+      {
+        "path": "app.js",
+        "bundle": true
+      },
+      {
+        "path": "${app.webpack.bundle}",
+        "compress": false
+      }
+    ]
+  },
+  "development": {
+    "js": [
+      {
+        "path": "app.js",
+        "bundle": true
+      },
+      {
+        "path": "main.js"
+      }
+    ],
+    "watch": {
+      "delay": 250
+    }
+  },
+  "bootstrap": {
+    "base": "${app.dir}",
+    "manifest": "generatedFiles/${build.id}.json",
+    "microloader": "generatedFiles/bootstrap.js",
+    "css": "generatedFiles/bootstrap.css"
+  },
+  "cache": {
+    "enable": false,
+    "deltas": "${build.id}/deltas"
+  },
+  "appCache": {
+    "cache": [
+      "index.html"
+    ],
+    "network": [
+      "*"
+    ],
+    "fallback": []
+  },
+  "archivePath": "archive/${build.id}",
+  "ignore": [
+    "(^|/)CVS(/?$|/.*?$)"
+  ],
+  "id": "84f82a1e-0309-4596-a639-515f3158487b"
+}
