@@ -2,3 +2,4 @@
 build
 generatedFiles
 node_modules
+sencha-error-*
