@@ -47,20 +47,38 @@ Ext.application({
                 },
 
                 formulas : {
-                    // ----------------------------------------------------------
-                    // TODO: make these recompute on every inline edit / add / remove.
-                    // The plain-function form below is the NAIVE version and does
-                    // NOT stay in sync when a `hours` cell is edited.
-                    // ----------------------------------------------------------
-                    totalHours : function (get) {
-                        return get('entries').sum('hours');
+                    // Deep bind to the store so the formula recomputes on every store change
+                    // https://docs.sencha.com/extjs/7.5.0/modern/Ext.app.ViewModel.html#method-bind
+                    totalHours : {
+                        bind : {
+                            bindTo : '{entries}',  // Bind to the store object
+                            deep   : true          // Deep Binding
+                        },
+                        get : function (store) {
+                            return store ? store.sum('hours') : 0;
+                        }
                     },
 
-                    saveDisabled : function (get) {
-                        var store = get('entries'),
-                            total = store.sum('hours');
+                    saveDisabled : {
+                        bind : {
+                            bindTo : '{entries}',  // Bind to the store object
+                            deep   : true          // Deep Binding
+                        },
+                        get : function (store) {
+                            // Validate the hours of each record
+                            const recs = store.getRange();
+                            // const recs = store.getData();
+                            for (let i = 0; i < recs.length; i++) {
+                                let hours = recs[i].get('hours');
+                                // let hours = recs.getAt(i).get("hours")
+                                if (hours < 0 || hours > 24) {
+                                    return true;
+                                }
+                            }
 
-                        return total === 0 || total > 40;   // (also: no invalid-row check yet)
+                            const total = store.sum('hours');
+                            return total <= 0 || total > 40;
+                        }
                     }
                 }
             },
