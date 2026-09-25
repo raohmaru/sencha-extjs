@@ -1,1 +1,1 @@
-# Task 1 application
+# task-1 — Widget state recycling in a buffered grid

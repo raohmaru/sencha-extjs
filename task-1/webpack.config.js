@@ -52,7 +52,7 @@ module.exports = async function (env) {
   // Using Live Reload with a root context directory, necessary for Sencha Cmd, requires these folders be ignored 
   const ignoreFolders = [path.resolve(__dirname, './generatedFiles'), path.resolve(__dirname, './build')]
 
-  portfinder.basePort = (env && env.port) || 1962
+  portfinder.basePort = (env && env.port) || 1961
   return portfinder.getPortPromise().then(port => {
     const plugins = [
       new ExtWebpackPlugin({

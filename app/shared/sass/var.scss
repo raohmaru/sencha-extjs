@@ -1,0 +1,65 @@
+//https://www.sencha.com/blog/build-a-completely-custom-ext-js-theme-in-less-than-10-minutes/
+//Defining Colors
+$darker: #091526;
+$dark: #223752;
+$dim: #395273;
+$dusk: #1d4b87;
+$shade: #1b61ca;
+$mist: #5c91a6;
+$neutral: #687c84;
+$lighter: #e6e9ee;
+
+// ***** Sencha Sass Variable Below *****
+
+// Global Colors
+$base_color : $dark; 
+$neutral_color : $neutral;
+$body_background_color : $darker;
+
+// Window Colors
+$window_body_background_color : $dim;
+$window_header_background_color: $dark;
+$window-body-color: $lighter;
+
+// Panel Colors
+$panel_body_background_color : $dusk;
+$panel_header_background_color: $dark;
+ 
+// Grid Colors
+$grid-header-background-color: $dark;
+$grid-row-cell-background-color: $dim;
+$grid-row-cell-alt-background-color: darken($dim, 10%);
+$grid-row-cell-over-background-color: $darker;
+$grid-row-cell-focus-color: $mist;
+$grid-row-cell-selected-background-color: $shade;
+$grid-row-cell-focus-background-color: darken($shade, 15%);
+
+// Form Fields
+$form-text-field-background-color: $dim;
+$form-trigger-background-color: $dark;
+$spinner-trigger-glyph-color: $lighter;
+
+// Buttons
+$button-default-base-color : $dusk;
+$button-default-border-color: $shade;
+$button-toolbar-background-color: $dusk;
+$button_toolbar_color : $lighter;
+
+// Progress Bars
+$progress_bar_background_color: $mist; 
+
+// Toolbar
+$toolbar-background-color: lighten($dim, 20%);
+$toolbar-text-color: $lighter;
+$toolbar-footer-background-color: $dark;
+
+// Tab Panel
+$tab_base_color: $dusk;
+$tab_color: lighten($dim, 15%);
+$tab_font_size: 18px;
+
+// ***** Fonts  **********
+
+$font-size: 16px;
+$color: $lighter;
+

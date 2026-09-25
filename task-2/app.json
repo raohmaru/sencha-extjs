@@ -1,6 +1,6 @@
 {
-  "name": "Task 2",
-  "namespace": "Task 2",
+  "name": "task-3",
+  "namespace": "task-3",
   "version": "1.0.0.0",
   "framework": "ext",
   "template": "classicdesktop",
@@ -8,8 +8,28 @@
   "builds": {
     "desktop": {
       "toolkit": "classic",
-      "theme": "theme-triton"
+      "theme": "theme-triton",
+      "sass": {
+        "generated": {
+          "var": "${build.id}/sass/save.scss",
+          "src": "${build.id}/sass/save"
+        }
+      }
     }
+  },
+  "sass": {
+    "namespace": "App",
+    "etc": [
+      "sass/etc/all.scss"
+    ],
+    "var": [
+      "../app/shared/sass/var.scss",
+      "../app/${build.id}/sass/var.scss"
+    ],
+    "src": [
+      "../app/shared/src/sass/src.scss",
+      "../app/${build.id}/sass/src.scss"
+    ]
   },
   "output": {
     "base": "${workspace.build.dir}/${build.environment}/${app.name}",
@@ -24,9 +44,22 @@
       "shared": "resources"
     }
   },
+  "fashion": {
+    "missingParameters": "error",
+    "inliner": {
+      "enable": false
+    }
+  },
   "classic": {
     "js": []
   },
+  "css": [
+    {
+      "path": "${build.out.css.path}",
+      "bundle": true,
+      "exclude": ["fashion"]
+    }
+  ],
   "loader": {
     "cache": true
   },
@@ -106,5 +139,5 @@
   "ignore": [
     "(^|/)CVS(/?$|/.*?$)"
   ],
-  "id": "84f82a1e-0309-4596-a639-515f3158487b"
+  "id": "1f8e43fd-7073-4722-9615-7fb828a2d1a1"
 }

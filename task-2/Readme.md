@@ -1,1 +1,1 @@
-# Task 2 application
+# task-2 — A custom two-way bindable component (config system)
