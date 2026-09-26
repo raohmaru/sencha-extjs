@@ -1,7 +1,13 @@
 const path = require('path');
+const fs = require('fs');
 const ExtWebpackPlugin = require('@sencha/ext-webpack-plugin');
 const portfinder = require('portfinder');
 
+const task = process.argv.slice(-1)[0];
+if (!fs.existsSync(task)) {
+    console.error('ERROR: Missing `task` argument, or the task folder does not exists.\nAdd the `task` after the npm command, e.g. npm run dev -- task-1');
+    process.exit(0);
+}
 module.exports = async function (env) {
   
   // Utility function for retrieving environment variables
@@ -15,9 +21,9 @@ module.exports = async function (env) {
   const stats = 'none'
 
   var framework     = get('framework',     'extjs')
-  var contextFolder = get('contextFolder', './')
+  var contextFolder = get('contextFolder', `./${task}/`)
   var entryFile     = get('entryFile',     './index.js')
-  var outputFolder  = get('outputFolder',  './')
+  var outputFolder  = get('outputFolder',  `./${task}/`)
   var toolkit       = get('toolkit',       'classic')
   var theme         = get('theme',         'theme-triton')
   var packages      = get('packages',      ['treegrid'])
