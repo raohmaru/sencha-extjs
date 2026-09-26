@@ -3,11 +3,19 @@ const fs = require('fs');
 const ExtWebpackPlugin = require('@sencha/ext-webpack-plugin');
 const portfinder = require('portfinder');
 
+// Gets the task folder from where run the app
 const task = process.argv.slice(-1)[0];
 if (!fs.existsSync(task)) {
     console.error('ERROR: Missing `task` argument, or the task folder does not exists.\nAdd the `task` after the npm command, e.g. npm run dev -- task-1');
     process.exit(0);
 }
+
+// Symlinks ./node_modules to {task folder}/./node_modules
+const nodeModules = path.relative(task, './node_modules');
+try {
+  fs.symlinkSync(nodeModules, path.join(task, 'node_modules'), 'dir');
+} catch(err) {}
+
 module.exports = async function (env) {
   
   // Utility function for retrieving environment variables
