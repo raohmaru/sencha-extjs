@@ -45,15 +45,41 @@ Ext.define('App.DashboardController', {
 
     // ---------------------------------------------------------------------
     // TODO: implement this.
-    //  - parallel: profile + permissions
-    //  - then dependent: timesheet for profile.employeeId
-    //  - mask on start, ALWAYS unmask
-    //  - single error handler
-    //  - guard against destroyed view
-    //  - return the promise
+    //  ✅ parallel: profile + permissions 
+    //  ✅ then dependent: timesheet for profile.employeeId
+    //  ✅ mask on start, ALWAYS unmask
+    //  ✅ single error handler
+    //  ✅ guard against destroyed view
+    //  ✅ return the promise
     // ---------------------------------------------------------------------
     loadDashboard : function () {
-        // TODO
+        // Mask on start
+        this.lookup('output').setLoading(true);
+
+        // Load the profile and permissions together
+        // https://docs.sencha.com/extjs/7.5.0/classic/Ext.Promise.html#static-method-all
+        return Ext.Promise.all([Api.loadProfile(), Api.loadPermissions()])
+            .then(([profile, permissions]) => {
+                return Api.loadTimesheet(profile.employeeId)
+                    .then((timesheet) => {
+                        return { profile, permissions, timesheet }
+                    });
+            })
+            .then((data) => {
+                // Guard against destroyed view
+                if (!this.destroyed) {
+                    this.renderDashboard(data);
+                }
+            })
+            .catch((error) => {
+                Ext.Msg.alert('Load failed', String(error));
+            })
+            .finally(() => {
+                // Guard against destroyed view
+                if (!this.destroyed) {
+                    this.lookup('output').setLoading(false);
+                }
+            });
     },
 
     // Given: renders the result. Call this on success.
