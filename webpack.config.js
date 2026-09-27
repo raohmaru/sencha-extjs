@@ -3,7 +3,7 @@ const fs = require('fs');
 const ExtWebpackPlugin = require('@sencha/ext-webpack-plugin');
 const portfinder = require('portfinder');
 
-// Gets the task folder from where run the app
+// Gets the task folder from where to run the app
 const task = process.argv.slice(-1)[0];
 if (!fs.existsSync(task)) {
     console.error('ERROR: Missing `task` argument, or the task folder does not exists.\nAdd the `task` after the npm command, e.g. npm run dev -- task-1');
