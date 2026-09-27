@@ -1,0 +1,1 @@
+# Task 5 — Large grid: filtering, bulk update & renderer hygiene
