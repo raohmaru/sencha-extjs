@@ -39,6 +39,11 @@ $form-text-field-background-color: $dim;
 $form-trigger-background-color: $dark;
 $spinner-trigger-glyph-color: $lighter;
 
+// Combo Box (dropdown list)
+// BoundList has no normal-state item background; items show the list background.
+$boundlist-background-color: $dim;
+$boundlist-item-over-background-color: $shade;
+
 // Buttons
 $button-default-base-color : $dusk;
 $button-default-border-color: $shade;
