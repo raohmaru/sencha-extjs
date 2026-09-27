@@ -72,16 +72,16 @@ Ext.application({
                     widget : {
                         xtype   : 'button',
                         handler : function () {
-							// https://docs.sencha.com/extjs/7.5.0/classic/Ext.grid.column.Widget.html#method-getWidgetRecord
+                            // https://docs.sencha.com/extjs/7.5.0/classic/Ext.grid.column.Widget.html#method-getWidgetRecord
                             const rec = this.getWidgetRecord();
 
                             rec.set('active', !rec.get('active'));
-							this.setWidgetLabel(rec);
+                            this.setWidgetLabel(rec);
                         },
 
-						setWidgetLabel(rec) {
-							this.setText(rec.get('active') ? 'Deactivate' : 'Activate');
-						}
+                        setWidgetLabel(rec) {
+                            this.setText(rec.get('active') ? 'Deactivate' : 'Activate');
+                        }
                     }
                 }
             ]
