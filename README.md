@@ -32,6 +32,11 @@ Execute `npm run dev -- <task folder>` to run Ext.js app in the given task folde
 ```bash
 npm run dev -- task-1
 ```
+It will start a dev server at http://localhost:1963.  
+You can change the port by adding the argument `--env port=<number>` before the `<task folder>` argument.
+```bash
+npm run dev -- --env port=1965 task-5
+```
 
 ## Note About Ext.js Versions
 
